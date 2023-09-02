@@ -54,3 +54,8 @@ export const loadNotes = async () => {
   const res = await fetch("http://127.0.0.1:8000/api/notes/test");
   return res.json();
 };
+
+let note_new = () => {};
+let note_detail = () => {};
+let note_update = () => {};
+let note_delete = () => {};
