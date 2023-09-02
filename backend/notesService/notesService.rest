@@ -1,1 +1,123 @@
 GET http://127.0.0.1:8000/api/notes/test
+
+
+###
+# to get token from userService application
+POST http://127.0.0.1:8000/api/user/login
+Content-Type: application/json
+
+{"username":"UserName","password":"UserName"}
+
+###
+GET http://127.0.0.1:8000/api/notes
+Authorization: Token 1eaabdcf7bffb06c9fedcebc61a83c52e5ed6a514b5ca364bb2a623ae024d559
+
+
+###
+POST http://127.0.0.1:8000/api/notes/new
+Authorization: Token 1eaabdcf7bffb06c9fedcebc61a83c52e5ed6a514b5ca364bb2a623ae024d559
+Content-Type: application/json
+
+{"title":"api note","content":"Api note Content"}
+
+# # sample
+# HTTP/1.1 200 OK
+# Date: Sat, 02 Sep 2023 12:23:52 GMT
+# Server: WSGIServer/0.2 CPython/3.10.4
+# Content-Type: application/json
+# Vary: Accept, origin
+# Allow: OPTIONS, POST
+# X-Frame-Options: DENY
+# Content-Length: 152
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: same-origin
+# Cross-Origin-Opener-Policy: same-origin
+
+# {
+#   "id": 4,
+#   "title": "api note",
+#   "content": "Api note Content",
+#   "created_at": "2023-09-02T12:23:52.242548Z",
+#   "updated_at": "2023-09-02T12:23:52.242548Z",
+#   "owner": 1
+# }
+
+
+
+
+###
+GET http://127.0.0.1:8000/api/notes/1
+Authorization: Token 1eaabdcf7bffb06c9fedcebc61a83c52e5ed6a514b5ca364bb2a623ae024d559
+Content-Type: application/json
+
+# # sample
+# HTTP/1.1 200 OK
+# Date: Sat, 02 Sep 2023 12:23:52 GMT
+# Server: WSGIServer/0.2 CPython/3.10.4
+# Content-Type: application/json
+# Vary: Accept, origin
+# Allow: OPTIONS, POST
+# X-Frame-Options: DENY
+# Content-Length: 152
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: same-origin
+# Cross-Origin-Opener-Policy: same-origin
+
+# {
+#   "id": 4,
+#   "title": "api note",
+#   "content": "Api note Content",
+#   "created_at": "2023-09-02T12:23:52.242548Z",
+#   "updated_at": "2023-09-02T12:23:52.242548Z",
+#   "owner": 1
+# }
+
+
+
+
+###
+PUT http://127.0.0.1:8000/api/notes/4/edit
+Authorization: Token 1eaabdcf7bffb06c9fedcebc61a83c52e5ed6a514b5ca364bb2a623ae024d559
+Content-Type: application/json
+
+{"title":"api note new","content":"Api note Content new"}
+
+# # sample
+# HTTP/1.1 200 OK
+# Date: Sat, 02 Sep 2023 12:23:52 GMT
+# Server: WSGIServer/0.2 CPython/3.10.4
+# Content-Type: application/json
+# Vary: Accept, origin
+# Allow: OPTIONS, POST
+# X-Frame-Options: DENY
+# Content-Length: 152
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: same-origin
+# Cross-Origin-Opener-Policy: same-origin
+
+# {
+#   "id": 4,
+#   "title": "api note new",
+#   "content": "Api note Content new",
+#   "created_at": "2023-09-02T12:23:52.242548Z",
+#   "updated_at": "2023-09-02T12:29:42.390462Z",
+#   "owner": 1
+# }
+
+
+###
+DELETE http://127.0.0.1:8000/api/notes/1/delete
+Authorization: Token 1eaabdcf7bffb06c9fedcebc61a83c52e5ed6a514b5ca364bb2a623ae024d559
+Content-Type: application/json
+
+# # sample
+# HTTP/1.1 200 OK
+# Date: Sat, 02 Sep 2023 12:33:27 GMT
+# Server: WSGIServer/0.2 CPython/3.10.4
+# Vary: Accept, origin
+# Allow: DELETE, OPTIONS
+# X-Frame-Options: DENY
+# Content-Length: 0
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: same-origin
+# Cross-Origin-Opener-Policy: same-origin
