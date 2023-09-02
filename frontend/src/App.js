@@ -11,7 +11,7 @@ import { createBrowserRouter, Routes, Route, NavLink, createRoutesFromElements, 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
+    <Route path="/" element={<Header />}>
       <Route index element={<Home />} />
       <Route path="login" element={<Login />} />
     </Route>
@@ -21,7 +21,6 @@ const router = createBrowserRouter(
 function App() {
   return (
     <div className="App">
-      <Header />
       <RouterProvider router={router} />
       <Footer />
     </div>

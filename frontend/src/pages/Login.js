@@ -3,7 +3,6 @@ import React from "react";
 const Login = () => {
   return (
     <div>
-      {" "}
       <section class="position-relative py-4 py-xl-5">
         <div class="container">
           <div class="row d-flex justify-content-center">

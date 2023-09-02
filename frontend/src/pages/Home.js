@@ -3,25 +3,18 @@ import React from "react";
 const Home = () => {
   return (
     <div>
-      <header class="bg-primary-gradient">
-        <div class="container pt-4 pt-xl-5">
-          <div class="row pt-5">
-            <div class="col-md-8 col-xl-6 text-center text-md-start mx-auto">
-              <div class="text-center">
-                <p class="fw-bold text-success mb-2">Voted #1 Worldwide</p>
-                <h1 class="fw-bold">The best solution for you and your customers</h1>
-              </div>
-            </div>
-            <div class="col-12 col-lg-10 mx-auto">
-              <div class="position-relative" style="display: flex;flex-wrap: wrap;justify-content: flex-end;">
-                <div style="position: relative;flex: 0 0 45%;transform: translate3d(-15%, 35%, 0);">
-                  <img class="img-fluid" data-bss-parallax="" data-bss-parallax-speed="0.8" src="assets/img/products/3.jpg" />
-                </div>
-                <div style="position: relative;flex: 0 0 45%;transform: translate3d(-5%, 20%, 0);">
-                  <img class="img-fluid" data-bss-parallax="" data-bss-parallax-speed="0.4" src="assets/img/products/2.jpg" />
-                </div>
-                <div style="position: relative;flex: 0 0 60%;transform: translate3d(0, 0%, 0);">
-                  <img class="img-fluid" data-bss-parallax="" data-bss-parallax-speed="0.25" src="assets/img/products/1.jpg" />
+      <header className="bg-primary-gradient">
+        <div className="container pt-4 pt-xl-5">
+          <div className="row pt-5">
+            <div className="col-md-8 col-xl-6 text-center text-md-start mx-auto">
+              <div className="text-center" >
+                <p className="fw-bold text-success mb-2">Online Notes Service</p>
+               <div className="main-text-section">
+                <p>
+                  Before the digital era, jotting down notes and storing them in physical notebooks or binders was the norm. While this method is still valuable in certain situations, it's no longer
+                  sufficient to meet the demands of modern life. Enter online note services.
+                </p>
+                <button className="btn btn-sm btn-primary">Start</button>
                 </div>
               </div>
             </div>
