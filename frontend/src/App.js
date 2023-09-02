@@ -8,12 +8,14 @@ import Login from "./pages/Login";
 
 //react router dom
 import { createBrowserRouter, Routes, Route, NavLink, createRoutesFromElements, RouterProvider } from "react-router-dom";
+import Notes from "./pages/notes/Notes";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Header />}>
       <Route index element={<Home />} />
       <Route path="login" element={<Login />} />
+      <Route path="notes" element={<Notes />} />
     </Route>
   )
 );

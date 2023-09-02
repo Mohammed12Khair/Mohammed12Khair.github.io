@@ -16,30 +16,30 @@ const Header = () => {
           <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item">
-              <NavLink to="/" >
-                <a class="nav-link active" href="index.html">
-                  Home
-                </a>
+                <NavLink to="/">
+                  <a class="nav-link active" href="index.html">
+                    Home
+                  </a>
                 </NavLink>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="services.html">
-                  Services
-                </a>
+                <NavLink to="notes">
+                  <a class="nav-link" href="services.html">
+                    Services
+                  </a>
+                </NavLink>
               </li>
             </ul>
-            <NavLink to="login" >
-            <a class="btn btn-primary btn-sm shadow" role="button" href="signup.html">
-              Login
-            </a>
+            <NavLink to="login">
+              <a class="btn btn-primary btn-sm shadow" role="button" href="signup.html">
+                Login
+              </a>
             </NavLink>
           </div>
         </div>
       </nav>
 
-      
-        <Outlet />
-      
+      <Outlet />
     </div>
   );
 };
