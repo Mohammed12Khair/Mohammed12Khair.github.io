@@ -20,3 +20,30 @@ GET http://127.0.0.1:8000/api/user/test
 
 
 ###
+POST http://127.0.0.1:8000/api/user/signup
+Content-Type: application/json
+
+{"username":"UserName","password":"UserName","email":"UserName@UserName.com" }
+
+# # Sample 
+# HTTP/1.1 201 Created
+# Date: Sat, 02 Sep 2023 10:55:25 GMT
+# Server: WSGIServer/0.2 CPython/3.10.4
+# Content-Type: application/json
+# Vary: Accept, origin
+# Allow: OPTIONS, POST
+# X-Frame-Options: DENY
+# Content-Length: 168
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: same-origin
+# Cross-Origin-Opener-Policy: same-origin
+
+# {
+#   "user": {
+#     "id": 1,
+#     "username": "UserName",
+#     "password": "UserName",
+#     "email": "UserName@UserName.com"
+#   },
+#   "token": "a93ab3a31e0445dffb8643a1a73229ae12d631c78abfe5faf2913ce7af52edd6"
+# }
