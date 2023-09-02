@@ -1,0 +1,22 @@
+GET http://127.0.0.1:8000/api/user
+
+
+# # Sample response for test url
+# HTTP/1.1 200 OK
+# Date: Sat, 02 Sep 2023 10:41:29 GMT
+# Server: WSGIServer/0.2 CPython/3.10.4
+# Content-Type: application/json
+# Vary: Accept, origin
+# Allow: GET, OPTIONS
+# X-Frame-Options: DENY
+# Content-Length: 17
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: same-origin
+# Cross-Origin-Opener-Policy: same-origin
+
+# {
+#   "data": "server"
+# }
+
+
+###
