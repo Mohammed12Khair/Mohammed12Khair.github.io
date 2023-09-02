@@ -1,6 +1,5 @@
 GET http://127.0.0.1:8000/api/user/test
 
-
 # # Sample response for test url
 # HTTP/1.1 200 OK
 # Date: Sat, 02 Sep 2023 10:41:29 GMT
@@ -55,3 +54,88 @@ Content-Type: application/json
 
 {"username":"UserName","password":"UserName"}
 
+# # Sample
+# HTTP/1.1 200 OK
+# Date: Sat, 02 Sep 2023 11:03:37 GMT
+# Server: WSGIServer/0.2 CPython/3.10.4
+# Content-Type: application/json
+# Vary: Accept, origin
+# Allow: OPTIONS, POST
+# X-Frame-Options: DENY
+# Content-Length: 248
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: same-origin
+# Cross-Origin-Opener-Policy: same-origin
+
+# {
+#   "token": "d76b95578e383589ec6d8d3db75ebbf2d8cd2fe6d8fa765fe0643be5e8a40e14",
+#   "user": {
+#     "id": 1,
+#     "username": "UserName",
+#     "password": "pbkdf2_sha256$390000$pEVf2hWmZ3vJPtF0ySgwX4$3CdfGOBotnVG/mct/p7qjfDCRFaXy3sAET4eXjB1xOE=",
+#     "email": "UserName@UserName.com"
+#   }
+# }
+
+###
+POST http://127.0.0.1:8000/api/user/token_authication_check
+Content-Type: application/json
+Authorization: Token 897d161311470c6f3a075d3def0a0339e08d6aa0ed815f7c7d54913ab5af9518
+
+# # Sample
+# HTTP/1.1 200 OK
+# Date: Sat, 02 Sep 2023 11:03:37 GMT
+# Server: WSGIServer/0.2 CPython/3.10.4
+# Content-Type: application/json
+# Vary: Accept, origin
+# Allow: OPTIONS, POST
+# X-Frame-Options: DENY
+# Content-Length: 248
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: same-origin
+# Cross-Origin-Opener-Policy: same-origin
+
+# {
+#   "token": "d76b95578e383589ec6d8d3db75ebbf2d8cd2fe6d8fa765fe0643be5e8a40e14",
+#   "user": {
+#     "id": 1,
+#     "username": "UserName",
+#     "password": "pbkdf2_sha256$390000$pEVf2hWmZ3vJPtF0ySgwX4$3CdfGOBotnVG/mct/p7qjfDCRFaXy3sAET4eXjB1xOE=",
+#     "email": "UserName@UserName.com"
+#   }
+# }
+
+
+###
+POST http://127.0.0.1:8000/api/user/logout
+Content-Type: application/json
+Authorization: Token 164f90b683122cfeb244c9ca35598a231f88de5ca739b54d7ae2d7085b0d9a12
+
+# # Sample
+# HTTP/1.1 204 No Content
+# Date: Sat, 02 Sep 2023 11:34:47 GMT
+# Server: WSGIServer/0.2 CPython/3.10.4
+# Vary: Accept, origin
+# Allow: POST, OPTIONS
+# X-Frame-Options: DENY
+# Content-Length: 0
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: same-origin
+# Cross-Origin-Opener-Policy: same-origin
+
+###
+POST http://127.0.0.1:8000/api/user/logout-all
+Content-Type: application/json
+Authorization: Token 897d161311470c6f3a075d3def0a0339e08d6aa0ed815f7c7d54913ab5af9518
+
+# # Sample
+# HTTP/1.1 204 No Content
+# Date: Sat, 02 Sep 2023 11:35:26 GMT
+# Server: WSGIServer/0.2 CPython/3.10.4
+# Vary: Accept, origin
+# Allow: POST, OPTIONS
+# X-Frame-Options: DENY
+# Content-Length: 0
+# X-Content-Type-Options: nosniff
+# Referrer-Policy: same-origin
+# Cross-Origin-Opener-Policy: same-origin

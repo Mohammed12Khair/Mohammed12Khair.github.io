@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from .serializer import UserSerializer
 from rest_framework.authentication import SessionAuthentication
 from knox.auth import AuthToken, TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -63,4 +64,13 @@ def login(request):
     serializer = UserSerializer(instance=user)
     data['user'] = serializer.data
 
+    return Response(data, status=status.HTTP_200_OK)
+
+
+@authentication_classes([SessionAuthentication, TokenAuthentication])
+@permission_classes([IsAuthenticated])
+@api_view(['GET', 'POST'])
+def token_authication_check(request):
+    data = {}
+    data['status'] = f"{request.user.username} is authenticated"
     return Response(data, status=status.HTTP_200_OK)
