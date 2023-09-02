@@ -11,5 +11,5 @@ from knox.auth import AuthToken, TokenAuthentication
 
 
 @api_view(['GET'])
-def Test_view(request):
+def test(request):
     return Response({"data": "server"})
