@@ -47,3 +47,11 @@ Content-Type: application/json
 #   },
 #   "token": "a93ab3a31e0445dffb8643a1a73229ae12d631c78abfe5faf2913ce7af52edd6"
 # }
+
+
+###
+POST http://127.0.0.1:8000/api/user/login
+Content-Type: application/json
+
+{"username":"UserName","password":"UserName"}
+

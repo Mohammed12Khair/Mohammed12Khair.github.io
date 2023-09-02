@@ -10,6 +10,7 @@ from rest_framework.authentication import SessionAuthentication
 from knox.auth import AuthToken, TokenAuthentication
 
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 
 
 @api_view(['GET'])
@@ -42,3 +43,24 @@ def signup(request):
         return Response(data, status=status.HTTP_201_CREATED)
 
     return Response(serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
+
+
+@api_view(['POST'])
+def login(request):
+    data = {}
+    # if user not found in User model return 404
+    user = get_object_or_404(User, username=request.data['username'])
+    if not user.check_password(request.data['password']):
+        # If wrong password
+        data['error'] = 'Invalid username or Password'
+        return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+
+    # set token value
+    token = AuthToken.objects.create(user)
+    data['token'] = token[1]
+
+    # set user value
+    serializer = UserSerializer(instance=user)
+    data['user'] = serializer.data
+
+    return Response(data, status=status.HTTP_200_OK)
