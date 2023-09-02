@@ -46,7 +46,7 @@ Content-Type: application/json
 
 
 ###
-GET http://127.0.0.1:8000/api/notes/1
+GET http://127.0.0.1:8000/api/notes/6
 Authorization: Token 1eaabdcf7bffb06c9fedcebc61a83c52e5ed6a514b5ca364bb2a623ae024d559
 Content-Type: application/json
 
@@ -76,7 +76,7 @@ Content-Type: application/json
 
 
 ###
-PUT http://127.0.0.1:8000/api/notes/4/edit
+PUT http://127.0.0.1:8000/api/notes/6/edit
 Authorization: Token 1eaabdcf7bffb06c9fedcebc61a83c52e5ed6a514b5ca364bb2a623ae024d559
 Content-Type: application/json
 
@@ -106,7 +106,7 @@ Content-Type: application/json
 
 
 ###
-DELETE http://127.0.0.1:8000/api/notes/1/delete
+DELETE http://127.0.0.1:8000/api/notes/6/delete
 Authorization: Token 1eaabdcf7bffb06c9fedcebc61a83c52e5ed6a514b5ca364bb2a623ae024d559
 Content-Type: application/json
 
