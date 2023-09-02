@@ -47,6 +47,7 @@ def note_new(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
+@permission_required('notesService.view_notes',raise_exception=True)
 def note_detail(request, id):
     note = get_object_or_404(Notes, id=id)
     serializer = NotesSerializer(instance=note)
@@ -56,6 +57,7 @@ def note_detail(request, id):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['PUT'])
+@permission_required('notesService.change_notes',raise_exception=True)
 def note_update(request, id):
     note = get_object_or_404(Notes, id=id)
     request.data['owner'] = request.user.id
@@ -69,6 +71,7 @@ def note_update(request, id):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['DELETE'])
+@permission_required('notesService.delete_notes',raise_exception=True)
 def note_delete(request, id):
     note = get_object_or_404(Notes, id=id)
     note.delete()
