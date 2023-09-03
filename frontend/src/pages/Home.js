@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "./context/UserContext";
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
   const { user, SetUser } = useContext(UserContext);
@@ -16,7 +17,16 @@ const Home = () => {
                     Before the digital era, jotting down notes and storing them in physical notebooks or binders was the norm. While this method is still valuable in certain situations, it's no longer
                     sufficient to meet the demands of modern life. Enter online note services.
                   </p>
-                  <button className="btn btn-sm btn-primary"> {user ? `Welcome ${user}`  : "Start"} </button>
+                  {/* If user is logged in redirect him to note service,If not redirect user to signUp */}
+                  {user ? (
+                    <NavLink to="notes">
+                      <button className="btn btn-sm btn-primary">Welcome {user.username}</button>
+                    </NavLink>
+                  ) : (
+                    <NavLink to="signup">
+                      <button className="btn btn-sm btn-primary">Start SIGNUP NOW</button>
+                    </NavLink>
+                  )}
                 </div>
               </div>
             </div>

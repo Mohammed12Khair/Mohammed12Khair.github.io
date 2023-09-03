@@ -1,12 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 //react router dom
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./context/UserContext";
 import axios from "axios";
 
+//add loading gif
+import LoadingImg from "../img/loading.gif";
+
 const Logout = () => {
+
+  //Set Error for end-user
+  const [errors, seterrors] = useState("Please wait ...");
+
+  //to redirect after logout
   const nav = useNavigate();
 
+  // get context of user
   const { SetUser } = useContext(UserContext);
   const { token, Settoken } = useContext(UserContext);
 
@@ -38,6 +47,7 @@ const Logout = () => {
         }
       })
       .catch(function (error) {
+        seterrors("failed !");
         // seterrors("Invalid \n username/password");
       });
   };
@@ -46,7 +56,14 @@ const Logout = () => {
     logoutAction();
   }, []);
 
-  return <div>Logout</div>;
+  return (
+    <div>
+      <div className="container text-center" style={{ marginTop: "5%", marginBottom: "10%" }}>
+        <h2>{errors}</h2>
+        <img src={LoadingImg} style={{ width: "20%" }} />
+      </div>
+    </div>
+  );
 };
 
 export default Logout;
