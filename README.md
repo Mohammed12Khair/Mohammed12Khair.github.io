@@ -12,4 +12,4 @@ React:
 react router dom
 axios
 ```
-Demo site was built using [Djanog and React ](http://194.60.87.194:4001/).
+Access demo Applicaton [Here ](http://194.60.87.194:4001/).
