@@ -28,11 +28,12 @@ const Header = () => {
                 </NavLink>
               </li>
               <li class="nav-item">
+              {user ? (
                 <NavLink to="notes">
                   <a class="nav-link" href="services.html">
                     Services
                   </a>
-                </NavLink>
+                </NavLink>) : ""}
               </li>
             </ul>
             {user ? (
