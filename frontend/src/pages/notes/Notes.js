@@ -1,9 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 
-//To load side list before router render to the UI
-import { useLoaderData } from "react-router-dom";
 //To refresh the list loaded after change is done
 import { useRevalidator } from "react-router-dom";
 
