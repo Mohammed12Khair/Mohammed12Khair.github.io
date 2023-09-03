@@ -6,4 +6,10 @@ Django:
 django rest framework
 knox
 ```
+
+React:
+```
+react router dom
+axios
+```
   
