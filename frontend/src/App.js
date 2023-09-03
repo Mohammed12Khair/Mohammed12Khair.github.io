@@ -10,16 +10,14 @@ import Signup from "./pages/Signup";
 
 //react router dom
 import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from "react-router-dom";
-import Notes, { loadNotes } from "./pages/notes/Notes";
+import Notes from "./pages/notes/Notes";
 import { useState } from "react";
 import { UserContext } from "./pages/context/UserContext";
 import axios from "axios";
 
-
-
 function App() {
-  const [user, SetUser] = useState();
-  const [token, Settoken] = useState();
+  const [user, SetUser] = useState(() => (localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null));
+  const [token, Settoken] = useState(() => (localStorage.getItem("token") ? localStorage.getItem("token") : null));
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -28,7 +26,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="Signup" element={<Signup />} />
-        <Route path="notes" element={<Notes />} loader={loadNotes} />
+        <Route path="notes" element={<Notes />} />
       </Route>
     )
   );

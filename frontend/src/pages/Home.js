@@ -20,7 +20,7 @@ const Home = () => {
                   {/* If user is logged in redirect him to note service,If not redirect user to signUp */}
                   {user ? (
                     <NavLink to="notes">
-                      <button className="btn btn-sm btn-primary">Welcome {user.username}</button>
+                      <button className="btn btn-sm btn-primary">Welcome {user.username},Go to Notes</button>
                     </NavLink>
                   ) : (
                     <NavLink to="signup">

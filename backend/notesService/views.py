@@ -17,7 +17,7 @@ from .models import Notes
 
 @api_view(['GET', 'POST'])
 def test_service(request):
-    serializer = NotesSerializer(Notes.objects.all(), many=True)
+    serializer = NotesSerializer(Notes.objects.all().order_by('id'), many=True)
     return Response(serializer.data)
 
 
@@ -26,7 +26,7 @@ def test_service(request):
 @api_view(['GET'])
 @permission_required('notesService.view_notes',raise_exception=True)
 def notes(request):
-    note = Notes.objects.filter(owner=request.user.id)
+    note = Notes.objects.filter(owner=request.user.id).order_by('-id')
     serializer = NotesSerializer(note, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 

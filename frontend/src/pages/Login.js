@@ -50,7 +50,6 @@ const Login = () => {
 
           //redirect to Service Page
           // navigate("../notes");
-          
         } else {
           console.log("Error");
         }
@@ -62,7 +61,8 @@ const Login = () => {
 
   return (
     <div>
-      {user ?  <Navigate to="../notes" /> : ""}
+     
+      {user ? <Navigate to="../notes" /> : ""}
       <section className="position-relative py-4 py-xl-5">
         <div className="container">
           <div className="row d-flex justify-content-center">

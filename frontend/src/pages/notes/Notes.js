@@ -11,17 +11,39 @@ import { useRevalidator } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const Notes = () => {
+  //Events just for test
+  const [events, Setevents] = useState([]);
+
+  //Selected Note ID
+  const [NoteID, setNoteID] = useState(null);
+
   //User details
   const { user, SetUser } = useContext(UserContext);
   const { token, Settoken } = useContext(UserContext);
-  
 
-  const NotesData = useLoaderData();
+  const [NotesData, setNotesData] = useState([]);
   const revalidator = useRevalidator();
 
   //Text aread and title state
   const [title, Settitle] = useState("");
   const [content, Setcontent] = useState("");
+
+  let loadNotes = async () => {
+    const res = await axios({
+      url: "/notes",
+      method: "GET",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+    })
+      .then(function (response) {
+        console.log(response.data)
+        setNotesData(response.data);
+      })
+      .catch(function (error) {
+        alert("somthing went wrong !");
+      });
+  };
 
   let note_new = async () => {
     let data = {
@@ -34,40 +56,99 @@ const Notes = () => {
       data: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Token 1eaabdcf7bffb06c9fedcebc61a83c52e5ed6a514b5ca364bb2a623ae024d559",
+        Authorization: `Token ${token}`,
       },
     }).then(function (response) {
-      Settitle(response.data.title);
-      Setcontent(response.data.content);
+      Settitle("");
+      Setcontent("");
+      Setevents([...events, `Success Add new ${title}`]);
       revalidator.revalidate();
     });
   };
+
   let note_detail = async (id) => {
+    console.log(token);
     const res = await axios({
-      url: `/api/notes/${id}`,
+      url: `/notes/${id}`,
       method: "GET",
       headers: {
-        Authorization: "Token 1eaabdcf7bffb06c9fedcebc61a83c52e5ed6a514b5ca364bb2a623ae024d559",
+        Authorization: `Token ${token}`,
+      },
+    }).then(function (response) {
+      setNoteID(id);
+      Settitle(response.data.title);
+      Setcontent(response.data.content);
+      Setevents([...events, `Success Show detail ${response.data.title}`]);
+    });
+  };
+
+  let note_update = async () => {
+    let data = {
+      title: title,
+      content: content,
+    };
+    const res = await axios({
+      url: `/notes/${NoteID}/edit`,
+      method: "PUT",
+      data: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
       },
     }).then(function (response) {
       Settitle(response.data.title);
       Setcontent(response.data.content);
+      Setevents([...events, `Success Updated detail ${response.data.title}`]);
+      revalidator.revalidate();
     });
   };
-  let note_update = () => {};
-  let note_delete = () => {};
+
+  let note_delete = async () => {
+    const res = await axios({
+      url: `/notes/${NoteID}/delete`,
+      method: "DELETE",
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    }).then(function (response) {
+      Settitle("");
+      Setcontent("");
+      Setevents([...events, `Success Deleted ${title}`]);
+      setNoteID(null)
+      revalidator.revalidate();
+      // setNoteID(null)
+    });
+  };
+
+  useEffect(
+    function () {
+      loadNotes();
+    },
+    [events]
+  );
 
   return (
     <div>
+    
       <section className="py-5">
+    
         <div className="container">
+        <strong>{user ? user.username : ""}</strong>
           <div className="row">
             <div className="col-md-6 col-xl-3">
               <div>
                 <h1>
-                  Notes
-                  <button onClick={note_new} className="btn btn-info btn-sm" type="button">
-                    Add new
+                  Notes{" "}
+                  <button
+                    className="btn btn-dark btn-sm"
+                    type="button"
+                    onClick={() => {
+                      setNoteID(null);
+                      Settitle("");
+                      Setcontent("");
+                    }}
+                  >
+                    Create New
                   </button>
                 </h1>
                 <div className="row">
@@ -91,10 +172,11 @@ const Notes = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-6 col-xl-9">
+            <div className="col-md-3 col-xl-6">
               <div className="form-group mb-3">
                 <label className="form-label">Title</label>
                 <input
+                  required
                   onChange={(e) => {
                     Settitle(e.target.value);
                   }}
@@ -105,6 +187,7 @@ const Notes = () => {
               </div>
               <div className="field">
                 <textarea
+                  required
                   onChange={(e) => {
                     Setcontent(e.target.value);
                   }}
@@ -113,9 +196,29 @@ const Notes = () => {
                   value={content}
                 ></textarea>
               </div>
-              <button className="btn btn-dark btn-sm" type="button">
-                Save
-              </button>
+
+              {NoteID ? (
+                <div>
+                  <button className="btn btn-dark btn-sm" type="button" onClick={note_update}>
+                    Save
+                  </button>
+                  <button onClick={note_delete} className="btn btn-danger btn-sm" type="button">
+                    Delete
+                  </button>
+                </div>
+              ) : (
+                <button onClick={note_new} className="btn btn-info btn-sm" type="button">
+                  Add new
+                </button>
+              )}
+            </div>
+            <div className="col-md-1 col-xl-3">
+              <div className="form-group mb-3">
+                <label className="form-label">Events</label>
+                {events.map((item) => (
+                  <p key={item.index}>{item}</p>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -125,8 +228,3 @@ const Notes = () => {
 };
 
 export default Notes;
-
-export const loadNotes = async () => {
-  const res = await fetch("http://127.0.0.1:8000/api/notes/test");
-  return res.json();
-};
