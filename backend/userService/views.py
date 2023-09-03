@@ -13,6 +13,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
+from datetime import datetime
+
 
 @api_view(['GET'])
 def test(request):
@@ -63,6 +65,7 @@ def login(request):
     # set user value
     serializer = UserSerializer(instance=user)
     data['user'] = serializer.data
+    print(datetime.now(), f"User {serializer.data}  loged in")
 
     return Response(data, status=status.HTTP_200_OK)
 

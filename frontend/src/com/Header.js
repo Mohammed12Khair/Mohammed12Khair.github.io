@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { UserContext } from "../pages/context/UserContext";
 
 const Header = () => {
+  const { user, logoutAction } = useContext(UserContext);
   return (
     <div>
       <nav class="navbar navbar-light navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav">
@@ -30,15 +32,22 @@ const Header = () => {
                 </NavLink>
               </li>
             </ul>
-            <NavLink to="login">
-              <a class="btn btn-primary btn-sm shadow" role="button" href="signup.html">
-                Login
-              </a>
-            </NavLink>
+            {user ? (
+                  <NavLink to="logout">
+              <button
+                class="btn btn-primary btn-sm shadow"
+                
+              >
+                logout
+              </button>
+              </NavLink>) : (
+              <NavLink to="login">
+                <button class="btn btn-primary btn-sm shadow">Login</button>
+              </NavLink>
+            )}
           </div>
         </div>
       </nav>
-
       <Outlet />
     </div>
   );
