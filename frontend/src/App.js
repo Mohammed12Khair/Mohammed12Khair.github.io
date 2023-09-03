@@ -6,6 +6,7 @@ import Footer from "./com/Footer";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
+import Signup from "./pages/Signup";
 
 //react router dom
 import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } from "react-router-dom";
@@ -13,6 +14,7 @@ import Notes, { loadNotes } from "./pages/notes/Notes";
 import { useState } from "react";
 import { UserContext } from "./pages/context/UserContext";
 import axios from "axios";
+
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
+        <Route path="Signup" element={<Signup />} />
         <Route path="notes" element={<Notes />} loader={loadNotes} />
       </Route>
     )

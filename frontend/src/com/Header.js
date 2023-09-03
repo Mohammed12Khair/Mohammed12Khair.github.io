@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { UserContext } from "../pages/context/UserContext";
 
+//add loading gif
+import LoadingImg from "../img/loading.gif";
+
 const Header = () => {
   const { user, logoutAction } = useContext(UserContext);
   return (
@@ -33,14 +36,10 @@ const Header = () => {
               </li>
             </ul>
             {user ? (
-                  <NavLink to="logout">
-              <button
-                class="btn btn-primary btn-sm shadow"
-                
-              >
-                logout
-              </button>
-              </NavLink>) : (
+              <NavLink to="logout">
+                <button class="btn btn-primary btn-sm shadow">logout</button>
+              </NavLink>
+            ) : (
               <NavLink to="login">
                 <button class="btn btn-primary btn-sm shadow">Login</button>
               </NavLink>
