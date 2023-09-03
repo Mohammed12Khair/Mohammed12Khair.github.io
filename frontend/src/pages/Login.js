@@ -1,6 +1,38 @@
-import React from "react";
+import axios from "axios";
+import React, { useState,useContext } from "react";
+
+//Import user Context
+import { UserContext } from "./context/UserContext";
 
 const Login = () => {
+  //user Context
+  const { user, SetUser } = useContext(UserContext);
+  const { token, Settoken } = useContext(UserContext);
+
+  const [username, Setusername] = useState("");
+  const [password, Setpassword] = useState("");
+
+  let loginAction = async (e) => {
+    e.preventDefault();
+
+    let data = {
+      username: username,
+      password: password,
+    };
+    const response = await axios({
+      url: "/user/login",
+      method: "POST",
+      data: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(function (response) {
+      console.log(response.data);
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", response.data.user);
+    });
+  };
+
   return (
     <div>
       <section class="position-relative py-4 py-xl-5">
@@ -14,16 +46,32 @@ const Login = () => {
                       <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
                     </svg>
                   </div>
-                  <form class="text-center" method="post">
+                  <form class="text-center" method="post" onSubmit={loginAction}>
                     <div class="mb-3">
-                      <input class="form-control" type="email" name="email" placeholder="Email" />
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="username"
+                        placeholder="username"
+                        onChange={(e) => {
+                          Setusername(e.target.value);
+                        }}
+                      />
                     </div>
                     <div class="mb-3">
-                      <input class="form-control" type="password" name="password" placeholder="Password" />
+                      <input
+                        class="form-control"
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        onChange={(e) => {
+                          Setpassword(e.target.value);
+                        }}
+                      />
                     </div>
                     <div class="mb-3">
                       <button class="btn btn-primary d-block w-100" type="submit">
-                        Sign Up
+                        Login
                       </button>
                     </div>
                   </form>
