@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.decorators import permission_required
+# from django.contrib.auth.decorators import permission_required
 
 from rest_framework import permissions
 from rest_framework.permissions import IsAuthenticated
@@ -24,7 +24,7 @@ def test_service(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
-@permission_required('notesService.view_notes',raise_exception=True)
+# @permission_required('notesService.view_notes',raise_exception=True)
 def notes(request):
     note = Notes.objects.filter(owner=request.user.id).order_by('-id')
     serializer = NotesSerializer(note, many=True)
@@ -34,7 +34,7 @@ def notes(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['POST'])
-@permission_required('notesService.add_notes',raise_exception=True)
+# @permission_required('notesService.add_notes',raise_exception=True)
 def note_new(request):
     request.data['owner'] = request.user.id
     serializer = NotesSerializer(data=request.data)
@@ -47,7 +47,7 @@ def note_new(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
-@permission_required('notesService.view_notes',raise_exception=True)
+# @permission_required('notesService.view_notes',raise_exception=True)
 def note_detail(request, id):
     note = get_object_or_404(Notes, id=id)
     serializer = NotesSerializer(instance=note)
@@ -57,7 +57,7 @@ def note_detail(request, id):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['PUT'])
-@permission_required('notesService.change_notes',raise_exception=True)
+# @permission_required('notesService.change_notes',raise_exception=True)
 def note_update(request, id):
     note = get_object_or_404(Notes, id=id)
     request.data['owner'] = request.user.id
@@ -71,7 +71,7 @@ def note_update(request, id):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['DELETE'])
-@permission_required('notesService.delete_notes',raise_exception=True)
+# @permission_required('notesService.delete_notes',raise_exception=True)
 def note_delete(request, id):
     note = get_object_or_404(Notes, id=id)
     note.delete()
