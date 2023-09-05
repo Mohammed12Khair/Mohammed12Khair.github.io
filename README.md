@@ -19,8 +19,3 @@ React:
 react router dom
 axios
 ```
-Access demo Applicaton [Here ](http://194.60.87.194:4001/).
-
-
-
- 
