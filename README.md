@@ -1,8 +1,8 @@
 # Simple Notes Application
-Django and React Online notes application
+Django and React Online notes web application
 
 ## Features
-
+- Login,Logout,Sign up.
 - Create, edit, and delete notes.
 - User-friendly and intuitive interface.
   
