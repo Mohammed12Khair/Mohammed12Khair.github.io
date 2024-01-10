@@ -13,9 +13,10 @@ import { createBrowserRouter, Route, createRoutesFromElements, RouterProvider } 
 import Notes from "./pages/notes/Notes";
 import { useState } from "react";
 import { UserContext } from "./pages/context/UserContext";
-import axios from "axios";
+// import axios from "axios";
 
 function App() {
+
   const [user, SetUser] = useState(() => (localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null));
   const [token, Settoken] = useState(() => (localStorage.getItem("token") ? localStorage.getItem("token") : null));
 
@@ -32,7 +33,6 @@ function App() {
   );
 
   //logout function
-
   return (
     <UserContext.Provider value={{ user, SetUser, token, Settoken }}>
       <div className="App">

@@ -48,15 +48,12 @@ const Signup = () => {
       .then(function (response) {
         if (response.status == "201") {
           console.log(response.data);
-
           //Add details to context state
           SetUser(response.data.user);
           Settoken(response.data.token);
-
           //add details to local storage
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("user", JSON.stringify(response.data.user));
-
           //redirect to Home Page
           nav("../");
         } else {

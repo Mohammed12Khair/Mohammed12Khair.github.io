@@ -156,3 +156,14 @@ REST_KNOX = {
     #    'MIN_REFRESH_INTERVAL': 60,
     'EXPIRY_DATETIME_FORMAT': api_settings.DATETIME_FORMAT,
 }
+
+
+# Mail Service Config
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'your-smtp-server.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your-email@example.com'
+# EMAIL_HOST_PASSWORD = 'your-email-password'
+# DEFAULT_FROM_EMAIL = 'webmaster@example.com'
+# SERVER_EMAIL = 'webmaster@example.com'
