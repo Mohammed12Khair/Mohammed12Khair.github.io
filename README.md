@@ -1,8 +1,8 @@
 # Simple Notes Application
-Django and React Online notes application
+Django and React Online notes web application
 
 ## Features
-
+- Login,Logout,Sign up.
 - Create, edit, and delete notes.
 - User-friendly and intuitive interface.
   
@@ -19,8 +19,3 @@ React:
 react router dom
 axios
 ```
-Access demo Applicaton [Here ](http://194.60.87.194:4001/).
-
-
-
- 
