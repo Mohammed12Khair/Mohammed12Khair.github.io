@@ -17,13 +17,13 @@ from datetime import datetime
 
 
 @api_view(['GET'])
-def test(request):
+def test(request) -> Response:
     return Response({"data": "server"})
 
 
 # User signUp view
 @api_view(['POST'])
-def signup(request):
+def signup(request) -> Response:
     data = {}
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
@@ -49,7 +49,7 @@ def signup(request):
 
 
 @api_view(['POST'])
-def login(request):
+def login(request) -> Response:
     data = {}
     # if user not found in User model return 404
     user = get_object_or_404(User, username=request.data['username'])
@@ -73,7 +73,10 @@ def login(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['GET', 'POST'])
-def token_authication_check(request):
+def token_authication_check(request) -> Response:
+    '''
+    check token validation     
+    '''
     data = {}
     data['status'] = f"{request.user.username} is authenticated"
     return Response(data, status=status.HTTP_200_OK)
