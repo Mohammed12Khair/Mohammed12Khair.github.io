@@ -17,8 +17,12 @@ import { UserContext } from "./pages/context/UserContext";
 
 function App() {
 
-  const [user, SetUser] = useState(() => (localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null));
-  const [token, Settoken] = useState(() => (localStorage.getItem("token") ? localStorage.getItem("token") : null));
+  const [user, SetUser] = useState(() => (
+    localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null)
+  );
+  const [token, Settoken] = useState(() => (
+    localStorage.getItem("token") ? localStorage.getItem("token") : null)
+  );
 
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -42,5 +46,7 @@ function App() {
     </UserContext.Provider>
   );
 }
+
+
 
 export default App;
