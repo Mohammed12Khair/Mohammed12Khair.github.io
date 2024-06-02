@@ -1,5 +1,5 @@
 # Simple Notes Application
-Django and React Online notes web application
+ Online notes web application Django and React stack
 
 ## Features
 - Login,Logout,Sign up.
