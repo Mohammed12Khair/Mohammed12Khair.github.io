@@ -24,8 +24,10 @@ def test_service(request):
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
-# @permission_required('notesService.view_notes',raise_exception=True)
 def notes(request) -> Response:
+    '''
+    Get all notes list
+    '''
     note: list[Notes] = Notes.objects.filter(
         owner=request.user.id).order_by('-id')
     serializer = NotesSerializer(note, many=True)
@@ -35,8 +37,10 @@ def notes(request) -> Response:
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['POST'])
-# @permission_required('notesService.add_notes',raise_exception=True)
 def note_new(request) -> Response:
+    '''
+    Create new note entry
+    '''
     request.data['owner'] = request.user.id
     serializer = NotesSerializer(data=request.data)
     if serializer.is_valid():
@@ -48,8 +52,10 @@ def note_new(request) -> Response:
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['GET'])
-# @permission_required('notesService.view_notes',raise_exception=True)
 def note_detail(request, id) -> Response:
+    '''
+    Get note details
+    '''
     note = get_object_or_404(Notes, id=id)
     serializer = NotesSerializer(instance=note)
     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -58,8 +64,10 @@ def note_detail(request, id) -> Response:
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['PUT'])
-# @permission_required('notesService.change_notes',raise_exception=True)
 def note_update(request, id) -> Response:
+    '''
+    Update note
+    '''
     note = get_object_or_404(Notes, id=id)
     request.data['owner'] = request.user.id
     serializer = NotesSerializer(instance=note, data=request.data)
@@ -72,8 +80,10 @@ def note_update(request, id) -> Response:
 @authentication_classes([SessionAuthentication, TokenAuthentication])
 @permission_classes([IsAuthenticated])
 @api_view(['DELETE'])
-# @permission_required('notesService.delete_notes',raise_exception=True)
 def note_delete(request, id) -> Response:
+    '''
+    Delete note
+    '''
     note = get_object_or_404(Notes, id=id)
     note.delete()
     return Response(status=status.HTTP_200_OK)

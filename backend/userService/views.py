@@ -18,12 +18,18 @@ from datetime import datetime
 
 @api_view(['GET'])
 def test(request) -> Response:
+    '''
+    test view to check endpoints 
+    '''
     return Response({"data": "server"})
 
 
 # User signUp view
 @api_view(['POST'])
 def signup(request) -> Response:
+    '''
+    to register new user
+    '''
     data = {}
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
@@ -50,6 +56,9 @@ def signup(request) -> Response:
 
 @api_view(['POST'])
 def login(request) -> Response:
+    '''
+    login action to get token
+    '''
     data = {}
     # if user not found in User model return 404
     user = get_object_or_404(User, username=request.data['username'])
