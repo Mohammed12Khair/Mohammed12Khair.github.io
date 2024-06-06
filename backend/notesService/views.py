@@ -71,6 +71,8 @@ def note_update(request, id) -> Response:
     note = get_object_or_404(Notes, id=id)
     request.data['owner'] = request.user.id
     serializer = NotesSerializer(instance=note, data=request.data)
+
+    # if data load is valid
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_200_OK)
