@@ -18,7 +18,7 @@ pip install -r req.txt
 ```
 
 ## Features
-- Login,Logout,Sign up.
+- Login,Logout,Signup.
 - Create, edit, and delete notes.
 - User-friendly and intuitive interface.
   
